@@ -1,5 +1,7 @@
 const NUM_BUSHES = 50
 const NUM_BALLS = 5
+const scoreText = document.querySelector("#scoreText");
+let score = 0;
 
 const player = document.querySelector('.player')
 const player_pos = {
@@ -68,6 +70,8 @@ function collision($div1, $div2) {
 function checkCollisions(){
     balls.forEach(ball => {
         if(collision(ball.ball, player)){
+            score+=1;
+            scoreText.textContent = score;
             sound.play()
             ball.ball.remove()
             generateBall()
@@ -88,6 +92,7 @@ function run(){
 }
 
 function init(){
+    scoreText.textContent = score;
     createBushes()
     createBalls()
     run()
